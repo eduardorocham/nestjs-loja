@@ -5,7 +5,7 @@ import { CriaProdutoDTO } from './dto/criarProdutoDto.dto';
 
 @Controller('produtos')
 export class ProdutoController {
-  constructor(private readonly produtoRepository: ProdutoRepository) { }
+  constructor(private readonly produtoRepository: ProdutoRepository) {}
 
   @Post()
   criaNovo(@Body() dadosProduto: CriaProdutoDTO) {

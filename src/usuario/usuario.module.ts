@@ -7,4 +7,4 @@ import { EmailIsUniqueValidator } from './validacao/emailIsUnique.validator';
   controllers: [UsuarioController],
   providers: [UsuarioRepository, EmailIsUniqueValidator],
 })
-export class UsuarioModule { }
+export class UsuarioModule {}
