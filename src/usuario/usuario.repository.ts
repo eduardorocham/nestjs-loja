@@ -4,6 +4,7 @@ import { UsuarioEntity } from './usuario.entity';
 @Injectable()
 export class UsuarioRepository {
   private usuarios: UsuarioEntity[] = [];
+
   private buscaPorId(id: string) {
     const possivelUsuario = this.usuarios.find(
       (usuarioSalvo) => usuarioSalvo.id === id,

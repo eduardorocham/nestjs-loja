@@ -48,13 +48,13 @@ export class UsuarioController {
     @Param('id') id: string,
     @Body() novosDados: AtualizaUsuarioDTO,
   ) {
-    const usuarioAtualizadp = await this.usuarioRepository.atualiza(
+    const usuarioAtualizado = await this.usuarioRepository.atualiza(
       id,
       novosDados,
     );
 
     return {
-      usuario: usuarioAtualizadp,
+      usuario: usuarioAtualizado,
       messagem: 'usuário atualizado com sucesso',
     };
   }
