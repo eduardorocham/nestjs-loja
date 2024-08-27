@@ -30,8 +30,8 @@ export class ProdutoController {
     produtoEntity.nome = dadosProduto.nome;
     produtoEntity.quantidade = dadosProduto.quantidade;
     produtoEntity.valor = dadosProduto.valor;
-    // produtoEntity.imagens = dadosProduto.imagens;
-    // produtoEntity.caractarirsticas = dadosProduto.caracteristicas;
+    produtoEntity.imagens = dadosProduto.imagens;
+    produtoEntity.caracteristicas = dadosProduto.caracteristicas;
 
     this.produtoService.criaProduto(produtoEntity);
     return {
