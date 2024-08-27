@@ -11,27 +11,29 @@ import {
 import { ProdutoRepository } from './produto.repository';
 import { CriaProdutoDTO } from './dto/criarProdutoDto.dto';
 import { ProdutoEntity } from './produto.entity';
-import { v4 as uuid } from 'uuid';
 import { AtualizaProdutoDTO } from './dto/atualizaProdutoDto';
+import { ProdutoService } from './produto.service';
 
 @Controller('produtos')
 export class ProdutoController {
-  constructor(private readonly produtoRepository: ProdutoRepository) { }
+  constructor(
+    private readonly produtoService: ProdutoService,
+    private readonly produtoRepository: ProdutoRepository,
+  ) { }
 
   @Post()
   criaNovo(@Body() dadosProduto: CriaProdutoDTO) {
     const produtoEntity = new ProdutoEntity();
-    produtoEntity.id = uuid();
     produtoEntity.usuarioId = dadosProduto.usuarioId;
-    produtoEntity.nome = dadosProduto.nome;
-    // produtoEntity.caractarirsticas = dadosProduto.caracteristicas;
     produtoEntity.categoria = dadosProduto.categoria;
     produtoEntity.descricao = dadosProduto.descricao;
-    // produtoEntity.imagens = dadosProduto.imagens;
+    produtoEntity.nome = dadosProduto.nome;
     produtoEntity.quantidade = dadosProduto.quantidade;
     produtoEntity.valor = dadosProduto.valor;
+    // produtoEntity.imagens = dadosProduto.imagens;
+    // produtoEntity.caractarirsticas = dadosProduto.caracteristicas;
 
-    this.produtoRepository.salva(produtoEntity);
+    this.produtoService.criaProduto(produtoEntity);
     return {
       produto: produtoEntity,
       mensagem: 'produto criado com sucesso!',
@@ -40,12 +42,15 @@ export class ProdutoController {
 
   @Get()
   listaTodos() {
-    return this.produtoRepository.listaTodos();
+    return this.produtoService.listaProdutos();
   }
 
   @Put('/:id')
   atualiza(@Param('id') id: string, @Body() novosDados: AtualizaProdutoDTO) {
-    const produtoAtualizado = this.produtoRepository.atualiza(id, novosDados);
+    const produtoAtualizado = this.produtoService.atualizaProduto(
+      id,
+      novosDados,
+    );
 
     return {
       produto: produtoAtualizado,
@@ -55,7 +60,7 @@ export class ProdutoController {
 
   @Delete('/:id')
   deleta(@Param('id') id: string) {
-    const produtoDeletado = this.produtoRepository.deleta(id);
+    const produtoDeletado = this.produtoService.deletaProduto(id);
 
     return {
       produto: produtoDeletado,
