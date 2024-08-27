@@ -16,7 +16,7 @@ import { AtualizaProdutoDTO } from './dto/atualizaProdutoDto';
 
 @Controller('produtos')
 export class ProdutoController {
-  constructor(private readonly produtoRepository: ProdutoRepository) {}
+  constructor(private readonly produtoRepository: ProdutoRepository) { }
 
   @Post()
   criaNovo(@Body() dadosProduto: CriaProdutoDTO) {
@@ -24,10 +24,10 @@ export class ProdutoController {
     produtoEntity.id = uuid();
     produtoEntity.usuarioId = dadosProduto.usuarioId;
     produtoEntity.nome = dadosProduto.nome;
-    produtoEntity.caractarirsticas = dadosProduto.caracteristicas;
+    // produtoEntity.caractarirsticas = dadosProduto.caracteristicas;
     produtoEntity.categoria = dadosProduto.categoria;
     produtoEntity.descricao = dadosProduto.descricao;
-    produtoEntity.imagens = dadosProduto.imagens;
+    // produtoEntity.imagens = dadosProduto.imagens;
     produtoEntity.quantidade = dadosProduto.quantidade;
     produtoEntity.valor = dadosProduto.valor;
 
