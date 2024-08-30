@@ -26,7 +26,7 @@ export class CriaProdutoDTO {
 
   @IsInt()
   @Min(0)
-  quantidade: number;
+  quantidadeDisponivel: number;
 
   @IsNotEmpty()
   @MaxLength(100)

@@ -19,4 +19,4 @@ import { MySqlConfigService } from './config/mysql.config.service';
     }),
   ],
 })
-export class AppModule { }
+export class AppModule {}

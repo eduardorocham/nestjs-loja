@@ -10,7 +10,6 @@ import {
 
 import { ProdutoRepository } from './produto.repository';
 import { CriaProdutoDTO } from './dto/criarProdutoDto.dto';
-import { ProdutoEntity } from './produto.entity';
 import { AtualizaProdutoDTO } from './dto/atualizaProdutoDto';
 import { ProdutoService } from './produto.service';
 
@@ -19,23 +18,14 @@ export class ProdutoController {
   constructor(
     private readonly produtoService: ProdutoService,
     private readonly produtoRepository: ProdutoRepository,
-  ) { }
+  ) {}
 
   @Post()
-  criaNovo(@Body() dadosProduto: CriaProdutoDTO) {
-    const produtoEntity = new ProdutoEntity();
-    produtoEntity.usuarioId = dadosProduto.usuarioId;
-    produtoEntity.categoria = dadosProduto.categoria;
-    produtoEntity.descricao = dadosProduto.descricao;
-    produtoEntity.nome = dadosProduto.nome;
-    produtoEntity.quantidade = dadosProduto.quantidade;
-    produtoEntity.valor = dadosProduto.valor;
-    produtoEntity.imagens = dadosProduto.imagens;
-    produtoEntity.caracteristicas = dadosProduto.caracteristicas;
-
-    this.produtoService.criaProduto(produtoEntity);
+  async criaNovo(@Body() dadosProduto: CriaProdutoDTO) {
+    const produtoCadastrado =
+      await this.produtoService.criaProduto(dadosProduto);
     return {
-      produto: produtoEntity,
+      produto: produtoCadastrado,
       mensagem: 'produto criado com sucesso!',
     };
   }

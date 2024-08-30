@@ -7,8 +7,6 @@ import {
   DeleteDateColumn,
   OneToMany,
 } from 'typeorm';
-import { CaracteristicaProdutoDTO } from './dto/caracteristicaProduto.dto';
-import { ImagemProdutoDto } from './dto/imagemProdutoDto.dto';
 import { ProdutoCaracteristicaEntity } from './produto-caracteristica.entity';
 import { ProdutoImagemEntity } from './produto-imagem.entity';
 
@@ -26,8 +24,8 @@ export class ProdutoEntity {
   @Column({ name: 'valor', nullable: false })
   valor: number;
 
-  @Column({ name: 'quantidade', nullable: false })
-  quantidade: number;
+  @Column({ name: 'quantidade_disponivel', nullable: false })
+  quantidadeDisponivel: number;
 
   @Column({ name: 'descricao', length: 255, nullable: false })
   descricao: string;
